@@ -1,5 +1,6 @@
 'use client'
 import React, { forwardRef, useMemo, useRef, useLayoutEffect } from 'react';
+import { motion } from "motion/react";
 import { Canvas, useFrame, useThree, RootState } from '@react-three/fiber';
 // @ts-ignore
 import { Color, Mesh, ShaderMaterial } from 'three';
@@ -144,9 +145,16 @@ const Silk: React.FC<SilkProps> = ({ speed = 5, scale = 1, color = '#7B7481', no
   );
 
   return (
-    <Canvas dpr={[1, 2]} frameloop="always">
-      <SilkPlane ref={meshRef} uniforms={uniforms} />
-    </Canvas>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1, delay: 1 }}
+      style={{ width: '100%', height: '100%' }}
+    >
+      <Canvas dpr={[1, 2]} frameloop="always">
+        <SilkPlane ref={meshRef} uniforms={uniforms} />
+      </Canvas>
+    </motion.div>
   );
 };
 
