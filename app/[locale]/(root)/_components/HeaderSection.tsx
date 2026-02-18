@@ -1,7 +1,6 @@
-import React from 'react';
 import Silk from "@/app/(root)/_components/ui/Silk";
 import ShinyText from "@/components/custom/ShinyText";
-import {ColorModeProvider} from "@/components/ui/color-mode";
+import CNavigationMenu from "@/components/custom/NavigationMenu";
 
 function HeaderSection() {
     return (
@@ -46,8 +45,8 @@ function HeaderSection() {
                     </div>
 
                     {/* Nav */}
-                    <div className="hidden md:flex items-center justify-center">
-
+                    <div className="flex items-center justify-center">
+                        <CNavigationMenu />
                     </div>
                 </div>
 
@@ -56,8 +55,6 @@ function HeaderSection() {
 
                 </div>
             </header>
-
-
         </section>
 
     );
