@@ -4,6 +4,7 @@ import "../globals.css";
 import { ThemeProvider } from "next-themes";
 import { defaultLocale, getDictionary, Locale } from "@/i18n";
 import Navbarbody from "@/components/body/navbarbody";
+import Footer from "@/components/body/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,12 +17,13 @@ const geistMono = Geist_Mono({
 });
 
 type Props = {
-  params: Promise<{ locale: Locale }>;
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const dictionary = await getDictionary(locale);
+  const dictionary = await getDictionary(locale as Locale);
 
   return {
     title: dictionary.metadata.title,
@@ -32,15 +34,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function RootLayout({
   children,
   params,
-}: Readonly<{
-  children: React.ReactNode;
-  params: Promise<{ locale: Locale }>;
-}>) {
+}: Props) {
   const { locale } = await params;
-  const dictionary = await getDictionary(locale);
+  const dictionary = await getDictionary(locale as Locale);
   
-  // Ensure we have a valid locale, fallback to default if needed (though middleware handles this)
-  const lang = locale || defaultLocale;
+  const lang = (locale as Locale) || defaultLocale;
   const dir = lang === "ar" ? "rtl" : "ltr";
 
   return (
@@ -55,7 +53,10 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <Navbarbody content={dictionary.home.header} navItems={dictionary.nav} locale={locale} />
-          {children}
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer locale={locale} content={dictionary.footer} />
         </ThemeProvider>
       </body>
     </html>

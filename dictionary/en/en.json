@@ -1,0 +1,220 @@
+{
+  "metadata": {
+    "title": "Ebneely - Build for me",
+    "description": "Premium construction and building services tailored to your needs."
+  },
+  "home": {
+    "header": {
+      "title": "Ebneely",
+      "subtitle": "Expert construction services at your fingertips"
+    }
+  },
+  "nav": [
+    { "title": "Services", "href": "/services" },
+    { "title": "Roadmap", "href": "/roadmap" },
+    { "title": "Contact", "href": "/contact" }
+  ],
+  "footer": {
+    "copyright": "All rights reserved.",
+    "terms": "Terms & Conditions"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We'd love to hear from you. Get in touch with our team.",
+    "info": {
+      "title": "Contact Information",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address",
+      "addressValue": "Riyadh, Saudi Arabia"
+    },
+    "hours": {
+      "title": "Business Hours",
+      "weekdays": "Monday - Friday",
+      "weekend": "Saturday - Sunday"
+    },
+    "form": {
+      "title": "Send us a Message",
+      "name": "Full Name",
+      "namePlaceholder": "Enter your full name",
+      "email": "Email Address",
+      "emailPlaceholder": "Enter your email address",
+      "subject": "Subject",
+      "subjectPlaceholder": "How can we help?",
+      "message": "Message",
+      "messagePlaceholder": "Tell us about your project...",
+      "submit": "Send Message"
+    }
+  },
+  "roadmap": {
+    "title": "Our Roadmap",
+    "subtitle": "See where we've been and where we're headed",
+    "status": {
+      "completed": "Completed",
+      "inProgress": "In Progress",
+      "planned": "Planned"
+    },
+    "phases": [
+      {
+        "title": "Phase 1: Foundation",
+        "description": "Building the core platform and establishing our presence",
+        "status": "completed",
+        "items": [
+          "Platform architecture design",
+          "Core service offerings",
+          "Initial market research",
+          "Brand identity development"
+        ]
+      },
+      {
+        "title": "Phase 2: Growth",
+        "description": "Expanding our services and reaching more customers",
+        "status": "in_progress",
+        "items": [
+          "Enhanced service catalog",
+          "Mobile application development",
+          "Partner network expansion",
+          "Customer support system"
+        ]
+      },
+      {
+        "title": "Phase 3: Innovation",
+        "description": "Introducing new technologies and features",
+        "status": "planned",
+        "items": [
+          "AI-powered project estimation",
+          "Virtual reality property tours",
+          "Advanced project management tools",
+          "Sustainable building solutions"
+        ]
+      },
+      {
+        "title": "Phase 4: Expansion",
+        "description": "Scaling across regions and markets",
+        "status": "planned",
+        "items": [
+          "Regional market expansion",
+          "International partnerships",
+          "Enterprise solutions",
+          "Franchise opportunities"
+        ]
+      }
+    ]
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive construction solutions tailored to bring your vision to life",
+    "items": [
+      {
+        "title": "Residential Construction",
+        "description": "Build your dream home with our expert team. From design to completion, we handle every detail.",
+        "icon": "🏠"
+      },
+      {
+        "title": "Commercial Projects",
+        "description": "Office buildings, retail spaces, and commercial complexes built to the highest standards.",
+        "icon": "🏢"
+      },
+      {
+        "title": "Renovation & Remodeling",
+        "description": "Transform your existing space with our professional renovation services.",
+        "icon": "🔨"
+      },
+      {
+        "title": "Interior Design",
+        "description": "Create stunning interiors that reflect your style and maximize functionality.",
+        "icon": "🎨"
+      },
+      {
+        "title": "Project Management",
+        "description": "End-to-end project oversight ensuring timely delivery and quality standards.",
+        "icon": "📋"
+      },
+      {
+        "title": "Consultation",
+        "description": "Expert advice on construction planning, materials, and cost optimization.",
+        "icon": "💡"
+      }
+    ],
+    "process": {
+      "title": "How We Work",
+      "steps": [
+        {
+          "title": "Consultation",
+          "description": "We discuss your vision, requirements, and budget"
+        },
+        {
+          "title": "Planning",
+          "description": "Detailed project planning and timeline creation"
+        },
+        {
+          "title": "Execution",
+          "description": "Professional construction with quality materials"
+        },
+        {
+          "title": "Delivery",
+          "description": "Final inspection and handover of your project"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Ready to Start Your Project?",
+      "description": "Contact us today to discuss your construction needs",
+      "button": "Get in Touch"
+    }
+  },
+  "terms": {
+    "title": "Terms & Conditions",
+    "lastUpdated": "Last updated: February 2024",
+    "sections": [
+      {
+        "title": "1. Acceptance of Terms",
+        "content": "By accessing and using Ebneely's services, you accept and agree to be bound by the terms and provisions of this agreement. If you do not agree to abide by these terms, please do not use our services."
+      },
+      {
+        "title": "2. Services Description",
+        "content": "Ebneely provides construction and building services including but not limited to residential construction, commercial projects, renovation, interior design, project management, and consultation services. All services are subject to separate contractual agreements."
+      },
+      {
+        "title": "3. User Responsibilities",
+        "content": [
+          "Provide accurate and complete information when requested",
+          "Maintain the confidentiality of any account credentials",
+          "Use our services in compliance with applicable laws",
+          "Not engage in any activity that disrupts our services",
+          "Provide timely feedback and approvals for project milestones"
+        ]
+      },
+      {
+        "title": "4. Payment Terms",
+        "content": "Payment terms and schedules will be outlined in individual project contracts. A deposit may be required before commencement of work. All prices are subject to change and will be communicated in advance."
+      },
+      {
+        "title": "5. Intellectual Property",
+        "content": "All content, designs, and materials created by Ebneely remain our intellectual property until full payment is received. Upon completion and full payment, ownership rights will be transferred as specified in the project contract."
+      },
+      {
+        "title": "6. Limitation of Liability",
+        "content": "Ebneely shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of our services. Our liability is limited to the amount paid for the specific service in question."
+      },
+      {
+        "title": "7. Privacy",
+        "content": "We respect your privacy and are committed to protecting your personal information. Our Privacy Policy outlines how we collect, use, and safeguard your data."
+      },
+      {
+        "title": "8. Modifications",
+        "content": "We reserve the right to modify these terms at any time. Changes will be effective immediately upon posting. Continued use of our services constitutes acceptance of modified terms."
+      },
+      {
+        "title": "9. Governing Law",
+        "content": "These terms shall be governed by and construed in accordance with the laws of the Kingdom of Saudi Arabia. Any disputes shall be resolved in the courts of Riyadh."
+      },
+      {
+        "title": "10. Contact Information",
+        "content": "For questions about these Terms & Conditions, please contact us through our official channels."
+      }
+    ],
+    "contactInfo": "If you have any questions about our Terms & Conditions, please",
+    "contactLink": "contact us here"
+  }
+}
