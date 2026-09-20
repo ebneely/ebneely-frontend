@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Work+Sans:wght@300;400;500&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#F3F0E9;color:#17140F;font-family:'Work Sans',system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+a:hover{color:#7A5F2E}
+[dir="rtl"] body{font-family:'IBM Plex Sans Arabic',system-ui,sans-serif}
+@keyframes ebn-cue{0%{transform:translateY(0);opacity:.25}50%{transform:translateY(7px);opacity:.85}100%{transform:translateY(0);opacity:.25}}
+[dir="rtl"] :not(#ebn-logo):not(#ebn-logo *){letter-spacing:normal !important;text-transform:none !important}
+[dir="rtl"] body,[dir="rtl"] h1,[dir="rtl"] h2,[dir="rtl"] h3,[dir="rtl"] p,[dir="rtl"] a,[dir="rtl"] span,[dir="rtl"] button,[dir="rtl"] input,[dir="rtl"] textarea,[dir="rtl"] blockquote,[dir="rtl"] figcaption,[dir="rtl"] label{font-family:'IBM Plex Sans Arabic',system-ui,sans-serif !important}
+#ebn-logo{direction:ltr}
+[dir="rtl"] #ebn-logo,[dir="rtl"] #ebn-logo *{direction:ltr !important;font-family:Archivo,sans-serif !important}
+[dir="rtl"] #ebn-logo span{letter-spacing:-.035em !important}
+@keyframes ebn-spin{to{transform:rotate(360deg)}}
+::selection{background:#17140F;color:#F3F0E9}
+</style>
+<script>setTimeout(function(){var v=document.getElementById('ebn-veil'),r=document.getElementById('ebn-ring');if(v&&!v.getAttribute('data-claimed')){v.style.transition='opacity .6s ease';v.style.opacity='0';v.style.pointerEvents='none';if(r)r.parentNode&&r.parentNode.removeChild(r);}},3200);</script>
+</helmet>
+<div id="ebn-veil" style="position:fixed;inset:0;z-index:95;background:#14110D;opacity:1;pointer-events:auto;will-change:opacity"></div>
+<div id="ebn-ring" style="position:fixed;right:22px;bottom:22px;width:26px;height:26px;border-radius:999px;border:1.5px solid rgba(243,240,233,.2);border-top-color:#7A5F2E;z-index:96;pointer-events:none;animation:ebn-spin .9s linear infinite"></div>
+
+
+<div id="ebn-page" style="min-height:100vh;position:relative">
+
+<header id="ebn-nav" style="position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:32px;height:56px;max-width:calc(100vw - 28px);padding:6px 18px 6px 6px;border-radius:30px;background:rgba(243,240,233,.5);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);box-shadow:0 0 0 1px rgba(23,20,15,.06);font-size:13px;font-weight:500;color:#17140F">
+  <a href="#top" id="ebn-logo" style="display:flex;align-items:center;gap:10px;flex:none;padding-left:12px">
+    <span style="display:flex;flex-direction:column;gap:2.5px;width:22px">
+      <span style="height:3.5px;background:#17140F;width:60%;margin:0 auto;border-radius:1px"></span>
+      <span style="height:3.5px;background:#17140F;width:100%;border-radius:1px"></span>
+      <span style="height:3.5px;background:#17140F;width:100%;border-radius:1px"></span>
+    </span>
+    <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:17px;letter-spacing:-.035em">bneely<sup style="font-size:8px;font-weight:500;top:-.8em;position:relative">®</sup></span>
+  </a>
+
+  <nav id="ebn-navlinks" style="display:none;gap:32px;font-size:13px;font-weight:500;color:rgba(23,20,15,.72)">
+    <a href="Ebneely - Work.dc.html" style="transition:color .4s cubic-bezier(.44,0,.56,1)" style-hover="color:#17140F">{{ t.navWork }}</a>
+    <a href="#services" style="transition:color .4s cubic-bezier(.44,0,.56,1)" style-hover="color:#17140F">{{ t.navServices }}</a>
+    <a href="#process" style="transition:color .4s cubic-bezier(.44,0,.56,1)" style-hover="color:#17140F">{{ t.navProcess }}</a>
+    <a href="#pricing" style="transition:color .4s cubic-bezier(.44,0,.56,1)" style-hover="color:#17140F">{{ t.navPricing }}</a>
+    <a href="#studio" style="transition:color .4s cubic-bezier(.44,0,.56,1)" style-hover="color:#17140F">{{ t.navStudio }}</a>
+  </nav>
+
+  <div style="display:flex;align-items:center;gap:8px;flex:none;margin-left:auto">
+    <button onClick="{{ toggleLang }}" aria-label="Toggle language" style="height:44px;min-width:44px;padding:0 13px;border:1px solid rgba(23,20,15,.14);background:transparent;border-radius:999px;font-family:'IBM Plex Sans Arabic','IBM Plex Mono',monospace;font-size:15px;font-weight:500;letter-spacing:.02em;color:#17140F;cursor:pointer;transition:background-color .4s cubic-bezier(.44,0,.56,1),border-color .4s cubic-bezier(.44,0,.56,1)" style-hover="background:rgba(23,20,15,.06);border-color:rgba(23,20,15,.32)">{{ langLabel }}</button>
+    <a href="Ebneely - Contact.dc.html" id="ebn-navcta" style="display:none;align-items:center;height:44px;padding:0 20px;background:#17140F;color:#F3F0E9;border-radius:999px;font-size:13px;font-weight:500;transition:background-color .3s cubic-bezier(.44,0,.56,1)" style-hover="background:#7A5F2E;color:#F3F0E9">{{ t.ctaNav }}</a>
+    <button id="ebn-burger" onClick="{{ openMenu }}" aria-label="Menu" style="width:44px;height:44px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;border:1px solid rgba(23,20,15,.14);background:transparent;border-radius:999px;cursor:pointer">
+      <span style="width:15px;height:1.5px;background:#17140F"></span>
+      <span style="width:15px;height:1.5px;background:#17140F"></span>
+    </button>
+  </div>
+</header>
+
+<div id="ebn-overlay" style="position:fixed;inset:8px;border-radius:32px;z-index:70;background:#14110D;color:#F3F0E9;display:flex;flex-direction:column;padding:22px 24px 40px;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .46s cubic-bezier(.16,1,.3,1),transform .56s cubic-bezier(.16,1,.3,1),visibility .46s">
+  <div style="display:flex;justify-content:flex-end">
+    <button onClick="{{ closeMenu }}" aria-label="Close" style="width:44px;height:44px;border:1px solid rgba(243,240,233,.25);background:transparent;border-radius:999px;color:#F3F0E9;font-size:18px;line-height:1;cursor:pointer">×</button>
+  </div>
+  <nav style="margin-top:auto;margin-bottom:auto;display:flex;flex-direction:column;gap:6px">
+    <a href="Ebneely - Work.dc.html" onClick="{{ closeMenu }}" style="font-family:Archivo,sans-serif;font-size:36px;font-weight:600;letter-spacing:-.035em;padding:8px 0">{{ t.navWork }}</a>
+    <a href="#services" onClick="{{ closeMenu }}" style="font-family:Archivo,sans-serif;font-size:36px;font-weight:600;letter-spacing:-.035em;padding:8px 0">{{ t.navServices }}</a>
+    <a href="#process" onClick="{{ closeMenu }}" style="font-family:Archivo,sans-serif;font-size:36px;font-weight:600;letter-spacing:-.035em;padding:8px 0">{{ t.navProcess }}</a>
+    <a href="#pricing" onClick="{{ closeMenu }}" style="font-family:Archivo,sans-serif;font-size:36px;font-weight:600;letter-spacing:-.035em;padding:8px 0">{{ t.navPricing }}</a>
+    <a href="#studio" onClick="{{ closeMenu }}" style="font-family:Archivo,sans-serif;font-size:36px;font-weight:600;letter-spacing:-.035em;padding:8px 0">{{ t.navStudio }}</a>
+  </nav>
+  <a href="Ebneely - Contact.dc.html" onClick="{{ closeMenu }}" style="display:flex;align-items:center;justify-content:center;height:56px;background:#F3F0E9;color:#17140F;border-radius:999px;font-size:15px">{{ t.ctaNav }}</a>
+</div>
+
+<section id="top" style="min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px 22px 56px;position:relative">
+  <sc-if value="{{ isEn }}" hint-placeholder-val="{{ true }}">
+    <div data-hero style="max-width:1000px">
+      <p data-hero-fade style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(23,20,15,.66);margin:0 0 26px">Ebneely — Studio for digital systems</p>
+      <h1 data-split-target style="font-family:Archivo,sans-serif;font-weight:600;font-size:clamp(40px,10.2vw,104px);line-height:.94;letter-spacing:-.045em;margin:0">We build the systems<br>behind luxury brands.</h1>
+      <p data-words-target style="max-width:540px;margin:28px auto 0;font-size:clamp(15px,4vw,18px);line-height:1.6;color:rgba(23,20,15,.66)">Websites, storefronts and enterprise systems for the Gulf — engineered to the standard of the brands they carry, at a fraction of regional agency rates.</p>
+    </div>
+  </sc-if>
+  <sc-if value="{{ isAr }}">
+    <div data-hero style="max-width:1000px">
+      <p data-hero-fade style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(23,20,15,.66);margin:0 0 26px">إبنيلي — استوديو الأنظمة الرقمية</p>
+      <h1 data-split-target style="font-family:'IBM Plex Sans Arabic',sans-serif;font-weight:600;font-size:clamp(34px,8.6vw,88px);line-height:1.12;letter-spacing:0;margin:0">نبني الأنظمة التي تقف<br>خلف العلامات الفاخرة.</h1>
+      <p data-words-target style="max-width:560px;margin:28px auto 0;font-size:clamp(15px,4vw,18px);line-height:1.85;color:rgba(23,20,15,.66)">مواقع ومتاجر وأنظمة مؤسسية لمنطقة الخليج — بمعايير هندسية ترقى لمستوى العلامات التي تحملها، وبجزء من أسعار وكالات المنطقة.</p>
+    </div>
+  </sc-if>
+
+  <div data-hero-cta style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:38px">
+    <a href="#contact" style="display:flex;align-items:center;height:48px;padding:0 24px;background:#17140F;color:#F3F0E9;border-radius:999px;font-size:14px;font-weight:500;transition:background-color .3s cubic-bezier(.44,0,.56,1),color .3s cubic-bezier(.44,0,.56,1)" style-hover="background:#7A5F2E;color:#F3F0E9;">{{ t.ctaHero }}</a>
+    <a href="#work" style="display:flex;align-items:center;height:48px;padding:0 24px;border:1px solid rgba(23,20,15,.2);border-radius:999px;font-size:14px;font-weight:500;transition:border-color .3s cubic-bezier(.44,0,.56,1),background-color .3s cubic-bezier(.44,0,.56,1)" style-hover="border-color:rgba(23,20,15,.66);background:rgba(23,20,15,.04);">{{ t.ctaWork }}</a>
+  </div>
+
+  <div style="position:absolute;bottom:26px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:9px">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(23,20,15,.66)">{{ t.scroll }}</span>
+    <span style="width:1px;height:26px;background:linear-gradient(to bottom,rgba(23,20,15,.45),transparent);animation:ebn-cue 2.6s cubic-bezier(.4,0,.2,1) infinite"></span>
+  </div>
+</section>
+
+<section style="border-top:1px solid rgba(23,20,15,.1);border-bottom:1px solid rgba(23,20,15,.1)">
+  <div style="max-width:1280px;margin:0 auto;padding:30px 20px 34px">
+    <div data-reveal style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 24px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(23,20,15,.66)">{{ t.trustLabel }}</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(23,20,15,.66)">{{ t.trustNote }}</span>
+    </div>
+    <div data-reveal style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(50%,150px),1fr));gap:10px;margin-top:22px">
+      <sc-for list="{{ trusted }}" as="c" hint-placeholder-count="5">
+        <div style="background:#F3F0E9;border:1px solid rgba(23,20,15,.12);border-radius:22px;height:82px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0 12px">
+          <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:15px;letter-spacing:-.02em;color:rgba(23,20,15,.78);text-align:center">{{ c.name }}</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(23,20,15,.66)">{{ c.kind }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <div data-reveal style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:20px">
+      <span style="width:6px;height:6px;border-radius:999px;background:#7A5F2E;flex:none"></span>
+      <span style="font-size:14px;color:rgba(23,20,15,.72)">{{ t.trustLatest }}</span>
+      <a href="Ebneely - Case MiniRue.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#7A5F2E;transition:color .4s cubic-bezier(.44,0,.56,1)" style-hover="color:#17140F">{{ t.trustCta }}</a>
+    </div>
+  </div>
+</section>
+
+<section id="work" style="padding:88px 20px 20px;max-width:1280px;margin:0 auto">
+  <div data-reveal style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:14px;margin-bottom:38px">
+    <h2 data-mask style="font-family:Archivo,sans-serif;font-weight:600;font-size:clamp(30px,7vw,54px);line-height:1;letter-spacing:-.04em;margin:0">{{ t.workTitle }}</h2>
+    <a href="Ebneely - Work.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(23,20,15,.66);transition:color .4s cubic-bezier(.44,0,.56,1)" style-hover="color:#17140F">{{ t.workMeta }}</a>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:18px">
+    <a href="Ebneely - Case MiniRue.dc.html" data-reveal data-card style="display:block;background:#EAE6DC;border-radius:30px;overflow:hidden;transition:box-shadow .3s cubic-bezier(.44,0,.56,1)">
+      <div style="aspect-ratio:4/3;background-image:repeating-linear-gradient(135deg,rgba(23,20,15,.07) 0 1px,transparent 1px 9px);display:flex;align-items:center;justify-content:center">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(23,20,15,.66);text-align:center;padding:0 18px">MiniRue storefront<br>screenshot</span>
+      </div>
+      <div style="padding:22px 22px 26px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">
+          <h3 style="font-family:Archivo,sans-serif;font-weight:600;font-size:22px;letter-spacing:-.025em;margin:0">MiniRue</h3>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:rgba(23,20,15,.66)">2026</span>
+        </div>
+        <p style="margin:9px 0 0;font-size:14.5px;line-height:1.55;color:rgba(23,20,15,.64)">{{ t.case1 }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:16px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border:1px solid rgba(23,20,15,.16);border-radius:999px;color:rgba(23,20,15,.64)">E-commerce</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border:1px solid rgba(23,20,15,.16);border-radius:999px;color:rgba(23,20,15,.64)">Next.js</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border:1px solid rgba(23,20,15,.16);border-radius:999px;color:rgba(23,20,15,.64)">SEO</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="Ebneely - Work.dc.html" data-reveal data-reveal-delay="90" data-card style="display:block;background:#14110D;color:#F3F0E9;border-radius:30px;overflow:hidden;transition:box-shadow .3s cubic-bezier(.44,0,.56,1)">
+      <div style="aspect-ratio:4/3;background-image:repeating-linear-gradient(135deg,rgba(243,240,233,.08) 0 1px,transparent 1px 9px);display:flex;align-items:center;justify-content:center">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(243,240,233,.58);text-align:center;padding:0 18px">5argny booking flow<br>screenshot</span>
+      </div>
+      <div style="padding:22px 22px 26px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">
+          <h3 style="font-family:Archivo,sans-serif;font-weight:600;font-size:22px;letter-spacing:-.025em;margin:0">5argny</h3>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:rgba(243,240,233,.58)">2026</span>
+        </div>
+        <p style="margin:9px 0 0;font-size:14.5px;line-height:1.55;color:rgba(243,240,233,.66)">{{ t.case2 }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:16px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border:1px solid rgba(243,240,233,.2);border-radius:999px;color:rgba(243,240,233,.66)">Booking</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border:1px solid rgba(243,240,233,.2);border-radius:999px;color:rgba(243,240,233,.66)">Arabic RTL</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border:1px solid rgba(243,240,233,.2);border-radius:999px;color:rgba(243,240,233,.66)">Payments</span>
+        </div>
+      </div>
+    </a>
+  </div>
+  <p data-reveal style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;color:rgba(23,20,15,.66);margin:16px 0 0">{{ t.workNote }}</p>
+</section>
+
+<section id="services" style="padding:96px 20px;max-width:1280px;margin:0 auto">
+  <h2 data-mask style="font-family:Archivo,sans-serif;font-weight:600;font-size:clamp(30px,7vw,54px);line-height:1;letter-spacing:-.04em;margin:0 0 8px">{{ t.servicesTitle }}</h2>
+  <p data-reveal style="max-width:560px;margin:0 0 42px;font-size:16px;line-height:1.65;color:rgba(23,20,15,.62)">{{ t.servicesLede }}</p>
+  <div style="border-top:1px solid rgba(23,20,15,.14)">
+    <sc-for list="{{ services }}" as="s" hint-placeholder-count="5">
+      <div data-reveal data-row style="display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 26px;padding:24px 14px;border-bottom:1px solid rgba(23,20,15,.14);border-radius:22px;transition:background-color .4s cubic-bezier(.44,0,.56,1)">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7A5F2E;width:34px;flex:none">{{ s.num }}</span>
+        <h3 style="font-family:Archivo,sans-serif;font-weight:500;font-size:clamp(20px,5vw,30px);letter-spacing:-.03em;margin:0;flex:1 1 240px;min-width:0">{{ s.name }}</h3>
+        <p style="margin:0;flex:1 1 300px;min-width:0;font-size:14.5px;line-height:1.6;color:rgba(23,20,15,.62)">{{ s.desc }}</p>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="process" style="background:#14110D;color:#F3F0E9;padding:96px 20px">
+  <div style="max-width:1280px;margin:0 auto">
+    <h2 data-mask style="font-family:Archivo,sans-serif;font-weight:600;font-size:clamp(30px,7vw,54px);line-height:1;letter-spacing:-.04em;margin:0 0 46px">{{ t.processTitle }}</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px">
+      <sc-for list="{{ steps }}" as="p" hint-placeholder-count="4">
+        <div data-reveal style="background:#14110D;border:1px solid rgba(243,240,233,.14);border-radius:26px;padding:30px 24px 38px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#7A5F2E">{{ p.num }}</span>
+          <h3 style="font-family:Archivo,sans-serif;font-weight:500;font-size:23px;letter-spacing:-.028em;margin:18px 0 10px">{{ p.name }}</h3>
+          <p style="margin:0;font-size:14.5px;line-height:1.62;color:rgba(243,240,233,.66)">{{ p.desc }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" style="padding:96px 20px;max-width:1280px;margin:0 auto">
+  <div data-reveal style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;margin-bottom:40px">
+    <h2 data-mask style="font-family:Archivo,sans-serif;font-weight:600;font-size:clamp(30px,7vw,54px);line-height:1;letter-spacing:-.04em;margin:0">{{ t.pricingTitle }}</h2>
+    <div style="display:flex;padding:4px;border:1px solid rgba(23,20,15,.16);border-radius:999px;position:relative">
+      <button onClick="{{ setSar }}" style="height:40px;padding:0 22px;border:0;background:{{ sarBg }};color:{{ sarFg }};border-radius:999px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;cursor:pointer;transition:background-color .3s cubic-bezier(.44,0,.56,1),color .3s cubic-bezier(.44,0,.56,1)">SAR</button>
+      <button onClick="{{ setUsd }}" style="height:40px;padding:0 22px;border:0;background:{{ usdBg }};color:{{ usdFg }};border-radius:999px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;cursor:pointer;transition:background-color .3s cubic-bezier(.44,0,.56,1),color .3s cubic-bezier(.44,0,.56,1)">USD</button>
+    </div>
+  </div>
+  <div id="ebn-tiers" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:16px">
+    <sc-for list="{{ tiers }}" as="tier" hint-placeholder-count="3">
+      <div data-reveal data-tier style="border:1px solid rgba(23,20,15,.16);border-radius:30px;padding:28px 24px 32px;display:flex;flex-direction:column;gap:18px;background:#F3F0E9;transition:box-shadow .3s cubic-bezier(.44,0,.56,1)">
+        <div>
+          <h3 style="font-family:Archivo,sans-serif;font-weight:600;font-size:19px;letter-spacing:-.02em;margin:0 0 5px">{{ tier.name }}</h3>
+          <p style="margin:0;font-size:13.5px;color:rgba(23,20,15,.62)">{{ tier.for }}</p>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:7px">
+          <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:clamp(30px,8vw,40px);letter-spacing:-.04em">{{ tier.price }}</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:rgba(23,20,15,.66)">{{ tier.unit }}</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:9px;border-top:1px solid rgba(23,20,15,.12);padding-top:18px">
+          <sc-for list="{{ tier.items }}" as="it" hint-placeholder-count="4">
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.5;color:rgba(23,20,15,.72)">
+              <span style="width:5px;height:5px;border-radius:999px;background:#7A5F2E;flex:none;margin-top:7px"></span>
+              <span>{{ it }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <a href="#contact" style="margin-top:auto;display:flex;align-items:center;justify-content:center;height:48px;border:1px solid rgba(23,20,15,.2);border-radius:999px;font-size:14px;font-weight:500;transition:background-color .3s cubic-bezier(.44,0,.56,1),color .3s cubic-bezier(.44,0,.56,1)" style-hover="background:#17140F;color:#F3F0E9">{{ t.tierCta }}</a>
+      </div>
+    </sc-for>
+  </div>
+  <p data-reveal style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;color:rgba(23,20,15,.66);margin:16px 0 0">{{ t.pricingNote }}</p>
+</section>
+
+<section style="padding:0 20px 96px;max-width:1280px;margin:0 auto">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px">
+    <sc-for list="{{ quotes }}" as="q" hint-placeholder-count="2">
+      <figure data-reveal style="margin:0;background:#EAE6DC;border-radius:30px;padding:32px 28px">
+        <blockquote style="margin:0;font-family:Archivo,sans-serif;font-weight:400;font-size:clamp(19px,4.6vw,25px);line-height:1.32;letter-spacing:-.025em">{{ q.text }}</blockquote>
+        <figcaption style="margin-top:22px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(23,20,15,.66)">{{ q.who }}</figcaption>
+      </figure>
+    </sc-for>
+  </div>
+</section>
+
+<section id="studio" style="padding:0 20px 96px;max-width:1280px;margin:0 auto">
+  <h2 data-mask style="font-family:Archivo,sans-serif;font-weight:600;font-size:clamp(30px,7vw,54px);line-height:1;letter-spacing:-.04em;margin:0 0 8px">{{ t.studioTitle }}</h2>
+  <p data-reveal style="max-width:600px;margin:0 0 40px;font-size:16px;line-height:1.65;color:rgba(23,20,15,.62)">{{ t.studioLede }}</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:16px">
+    <sc-for list="{{ team }}" as="m" hint-placeholder-count="4">
+      <div data-reveal>
+        <div style="aspect-ratio:3/4;border-radius:26px;overflow:hidden;background:#EAE6DC;background-image:repeating-linear-gradient(135deg,rgba(23,20,15,.07) 0 1px,transparent 1px 9px);display:flex;align-items:flex-end;padding:14px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(23,20,15,.66)">portrait</span>
+        </div>
+        <p style="margin:12px 0 2px;font-family:Archivo,sans-serif;font-weight:500;font-size:16px;letter-spacing:-.02em">{{ m.name }}</p>
+        <p style="margin:0;font-size:13.5px;color:rgba(23,20,15,.62)">{{ m.role }}</p>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="contact" style="background:#14110D;color:#F3F0E9;padding:96px 20px 40px">
+  <div style="max-width:1280px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:48px 40px;align-items:start">
+      <div data-reveal>
+        <h2 data-mask style="font-family:Archivo,sans-serif;font-weight:600;font-size:clamp(32px,8vw,62px);line-height:.98;letter-spacing:-.045em;margin:0">{{ t.contactTitle }}</h2>
+        <p style="max-width:420px;margin:20px 0 0;font-size:16px;line-height:1.65;color:rgba(243,240,233,.66)">{{ t.contactLede }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:30px">
+          <a href="Ebneely - Contact.dc.html" style="display:flex;align-items:center;height:48px;padding:0 24px;background:#F3F0E9;color:#17140F;border-radius:999px;font-size:14px;font-weight:500;transition:background-color .3s cubic-bezier(.44,0,.56,1),color .3s cubic-bezier(.44,0,.56,1)" style-hover="background:#7A5F2E;color:#F3F0E9;">{{ t.whatsapp }}</a>
+          <a href="Ebneely - Contact.dc.html" style="display:flex;align-items:center;height:48px;padding:0 24px;border:1px solid rgba(243,240,233,.25);border-radius:999px;font-size:14px;font-weight:500;transition:border-color .3s cubic-bezier(.44,0,.56,1)" style-hover="border-color:rgba(243,240,233,.6);">{{ t.email }}</a>
+        </div>
+      </div>
+
+      <form data-reveal data-reveal-delay="110" onSubmit="{{ submit }}" style="display:flex;flex-direction:column;gap:14px">
+        <label style="display:flex;flex-direction:column;gap:7px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(243,240,233,.58)">{{ t.fName }}</span>
+          <input type="text" style="height:54px;background:rgba(243,240,233,.05);border:1px solid rgba(243,240,233,.2);border-radius:27px;padding:0 20px;color:#F3F0E9;font-family:'Work Sans',sans-serif;font-size:16px;outline:none;transition:border-color .4s cubic-bezier(.44,0,.56,1),background-color .4s cubic-bezier(.44,0,.56,1)" style-focus="border-color:#7A5F2E;background:rgba(243,240,233,.08)">
+        </label>
+        <label style="display:flex;flex-direction:column;gap:7px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(243,240,233,.58)">{{ t.fEmail }}</span>
+          <input type="email" style="height:54px;background:rgba(243,240,233,.05);border:1px solid rgba(243,240,233,.2);border-radius:27px;padding:0 20px;color:#F3F0E9;font-family:'Work Sans',sans-serif;font-size:16px;outline:none;transition:border-color .4s cubic-bezier(.44,0,.56,1),background-color .4s cubic-bezier(.44,0,.56,1)" style-focus="border-color:#7A5F2E;background:rgba(243,240,233,.08)">
+        </label>
+        <label style="display:flex;flex-direction:column;gap:7px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(243,240,233,.58)">{{ t.fBrief }}</span>
+          <textarea rows="3" style="background:rgba(243,240,233,.05);border:1px solid rgba(243,240,233,.2);border-radius:24px;color:#F3F0E9;font-family:'Work Sans',sans-serif;font-size:16px;outline:none;resize:vertical;padding:16px 20px;transition:border-color .4s cubic-bezier(.44,0,.56,1),background-color .4s cubic-bezier(.44,0,.56,1)" style-focus="border-color:#7A5F2E;background:rgba(243,240,233,.08)"></textarea>
+        </label>
+        <button type="submit" style="margin-top:8px;height:48px;background:#7A5F2E;border:0;border-radius:999px;color:#F3F0E9;font-family:'Work Sans',sans-serif;font-size:14px;font-weight:500;cursor:pointer;transition:filter .3s cubic-bezier(.44,0,.56,1)" style-hover="filter:brightness(1.1);">{{ sendLabel }}</button>
+      </form>
+    </div>
+
+    <footer style="margin-top:80px;padding-top:26px;border-top:1px solid rgba(243,240,233,.14);display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(243,240,233,.58)">
+      <span>Ebneely® — Riyadh · Cairo</span>
+      <span>© MMXXVI</span>
+    </footer>
+  </div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const EN = {
+  navWork:"Work", navServices:"Services", navProcess:"Process", navPricing:"Pricing", navStudio:"Studio",
+  ctaNav:"Start a project", ctaHero:"Start a project", ctaWork:"See the work", scroll:"Scroll",
+  trustLabel:"Brands that trusted us", trustNote:"Riyadh · Jeddah · Cairo",
+  trustLatest:"Latest: MiniRue — original cosmetics and perfumes, a verified business on Trustpilot.", trustCta:"Read the case",
+  workTitle:"Selected work", workMeta:"02 projects",
+  case1:"Original cosmetics and perfumes in luxury packaging. Storefront, multi-category catalogue, Trustpilot verification and Instapay checkout.",
+  case2:"Tours and travel operator. Trip catalogue, enquiry-to-booking flow and Arabic-first interface.",
+  workNote:"Placeholders marked for screenshots. 5argny details to confirm.",
+  servicesTitle:"What we sell", servicesLede:"A whole agency: quality websites and systems, including SEO, analytics and enterprise systems — cheaper than Gulf agency rates.",
+  processTitle:"How we work",
+  pricingTitle:"Engagements", tierCta:"Enquire", pricingNote:"Example figures. Send me your real numbers and I will set them.",
+  studioTitle:"The studio", studioLede:"A small engineering-led team working across the Gulf and Egypt. Names and portraits to be supplied.",
+  contactTitle:"Tell us what you are building.", contactLede:"Send a brief. We reply within one working day with scope, timeline and a fixed price.",
+  whatsapp:"WhatsApp us", email:"Email the studio",
+  fName:"Name", fEmail:"Email", fBrief:"Brief", send:"Send brief", sent:"Received — we will reply shortly"
+};
+
+const AR = {
+  navWork:"أعمالنا", navServices:"خدماتنا", navProcess:"منهجيتنا", navPricing:"الأسعار", navStudio:"الاستوديو",
+  ctaNav:"ابدأ مشروعك", ctaHero:"ابدأ مشروعك", ctaWork:"شاهد الأعمال", scroll:"مرّر",
+  trustLabel:"علامات وثقت بنا", trustNote:"الرياض · جدة · القاهرة",
+  trustLatest:"الأحدث: MiniRue — مستحضرات تجميل وعطور أصلية، وشركة موثقة على Trustpilot.", trustCta:"اقرأ الحالة",
+  workTitle:"أعمال مختارة", workMeta:"٠٢ مشروع",
+  case1:"مستحضرات تجميل وعطور أصلية بتغليف فاخر. متجر إلكتروني، كتالوج متعدد الأقسام، توثيق Trustpilot، ودفع عبر InstaPay.",
+  case2:"شركة رحلات وسفر. كتالوج للرحلات، ومسار من الاستفسار إلى الحجز، وواجهة عربية أولاً.",
+  workNote:"أماكن مخصصة للقطات الشاشة. تفاصيل 5argny بحاجة للتأكيد.",
+  servicesTitle:"ما نقدمه", servicesLede:"وكالة كاملة: مواقع وأنظمة بجودة عالية، تشمل تحسين محركات البحث والتحليلات والأنظمة المؤسسية — بأسعار أقل من وكالات الخليج.",
+  processTitle:"كيف نعمل",
+  pricingTitle:"نماذج التعاون", tierCta:"استفسر", pricingNote:"أرقام توضيحية. أرسل لنا أرقامك الفعلية لتحديثها.",
+  studioTitle:"الاستوديو", studioLede:"فريق صغير بقيادة هندسية يعمل في الخليج ومصر. الأسماء والصور بانتظار التزويد.",
+  contactTitle:"أخبرنا بما تبنيه.", contactLede:"أرسل موجزاً. نرد خلال يوم عمل واحد بالنطاق والجدول الزمني وسعر ثابت.",
+  whatsapp:"واتساب", email:"البريد الإلكتروني",
+  fName:"الاسم", fEmail:"البريد الإلكتروني", fBrief:"الموجز", send:"إرسال الموجز", sent:"تم الاستلام — سنرد قريباً"
+};
+
+const SERVICES = {
+  en:[
+    {num:"01",name:"Websites",desc:"Marketing sites and brand presences. Bilingual, fast, and built on a CMS your team can run."},
+    {num:"02",name:"Commerce",desc:"Storefronts with catalogue, multi-currency pricing, local payment rails and order tracking."},
+    {num:"03",name:"Enterprise systems",desc:"Internal dashboards, inventory, CRM and operations tooling that replace spreadsheets."},
+    {num:"04",name:"SEO & analytics",desc:"Technical SEO, structured data, Arabic keyword coverage, and reporting you can act on."},
+    {num:"05",name:"Retainers",desc:"Ongoing engineering, content and performance work on a monthly basis."}
+  ],
+  ar:[
+    {num:"٠١",name:"المواقع",desc:"مواقع تسويقية وهويات رقمية. ثنائية اللغة وسريعة، ومبنية على نظام إدارة يستطيع فريقك تشغيله."},
+    {num:"٠٢",name:"التجارة الإلكترونية",desc:"متاجر بكتالوج وأسعار متعددة العملات ووسائل دفع محلية وتتبع للطلبات."},
+    {num:"٠٣",name:"الأنظمة المؤسسية",desc:"لوحات تحكم داخلية وإدارة مخزون وعلاقات عملاء وأدوات تشغيل تُغني عن جداول البيانات."},
+    {num:"٠٤",name:"السيو والتحليلات",desc:"سيو تقني وبيانات منظمة وتغطية للكلمات المفتاحية العربية وتقارير قابلة للتنفيذ."},
+    {num:"٠٥",name:"عقود الدعم",desc:"عمل هندسي ومحتوى وتحسين أداء بصفة شهرية."}
+  ]
+};
+
+const STEPS = {
+  en:[
+    {num:"01",name:"Brief",desc:"One call. We map what exists, what it costs you today, and what success looks like."},
+    {num:"02",name:"Blueprint",desc:"Scope, sitemap, data model and a fixed price. Signed before any code is written."},
+    {num:"03",name:"Build",desc:"Weekly builds on a live staging link. You see progress, not status reports."},
+    {num:"04",name:"Handover",desc:"Launch, training, analytics wired up, and thirty days of support included."}
+  ],
+  ar:[
+    {num:"٠١",name:"الموجز",desc:"مكالمة واحدة. نحدد ما هو قائم وتكلفته الحالية وشكل النجاح المطلوب."},
+    {num:"٠٢",name:"المخطط",desc:"النطاق وخريطة الموقع ونموذج البيانات وسعر ثابت. يُعتمد قبل كتابة أي كود."},
+    {num:"٠٣",name:"التنفيذ",desc:"إصدارات أسبوعية على رابط تجريبي مباشر. ترى التقدم بنفسك لا تقارير حالة."},
+    {num:"٠٤",name:"التسليم",desc:"الإطلاق والتدريب وربط التحليلات، وثلاثون يوماً من الدعم."}
+  ]
+};
+
+const TIERS = {
+  en:[
+    {name:"Launch",for:"Brand site, ready in 3 weeks",sar:"18,000",usd:"4,800",items:["Up to 6 pages, bilingual","CMS your team can edit","Technical SEO setup","Analytics + reporting","30 days support"]},
+    {name:"Commerce",for:"Storefront like MiniRue",sar:"42,000",usd:"11,200",items:["Full catalogue and search","Local payment rails","Multi-currency pricing","Order tracking + reviews","90 days support"]},
+    {name:"Enterprise",for:"Systems, not just pages",sar:"from 90,000",usd:"from 24,000",items:["Custom internal systems","Integrations and data migration","Dashboards and permissions","Dedicated engineer","SLA and monitoring"]}
+  ],
+  ar:[
+    {name:"الإطلاق",for:"موقع للعلامة، جاهز في ٣ أسابيع",sar:"١٨,٠٠٠",usd:"٤,٨٠٠",items:["حتى ٦ صفحات، ثنائية اللغة","نظام إدارة محتوى يحرره فريقك","إعداد سيو تقني","تحليلات وتقارير","دعم ٣٠ يوماً"]},
+    {name:"التجارة",for:"متجر مثل MiniRue",sar:"٤٢,٠٠٠",usd:"١١,٢٠٠",items:["كتالوج كامل وبحث","وسائل دفع محلية","أسعار متعددة العملات","تتبع الطلبات والتقييمات","دعم ٩٠ يوماً"]},
+    {name:"المؤسسات",for:"أنظمة لا مجرد صفحات",sar:"من ٩٠,٠٠٠",usd:"من ٢٤,٠٠٠",items:["أنظمة داخلية مخصصة","تكاملات ونقل بيانات","لوحات تحكم وصلاحيات","مهندس مخصص","اتفاقية مستوى خدمة ومراقبة"]}
+  ]
+};
+
+const TRUSTED = {
+  en:[
+    {name:"MiniRue",kind:"Cosmetics · Egypt"},
+    {name:"5argny",kind:"Travel · Egypt"},
+    {name:"Client mark",kind:"Slot available"},
+    {name:"Client mark",kind:"Slot available"},
+    {name:"Client mark",kind:"Slot available"}
+  ],
+  ar:[
+    {name:"MiniRue",kind:"تجميل · مصر"},
+    {name:"5argny",kind:"سفر · مصر"},
+    {name:"شعار عميل",kind:"مكان متاح"},
+    {name:"شعار عميل",kind:"مكان متاح"},
+    {name:"شعار عميل",kind:"مكان متاح"}
+  ]
+};
+
+const QUOTES = {
+  en:[
+    {text:"Placeholder quote — replace with a real client line once you have approval.",who:"Client name · MiniRue"},
+    {text:"Placeholder quote — a second short line works best here, under twenty words.",who:"Client name · 5argny"}
+  ],
+  ar:[
+    {text:"اقتباس توضيحي — استبدله بعبارة حقيقية من العميل بعد الموافقة.",who:"اسم العميل · MiniRue"},
+    {text:"اقتباس توضيحي — يُفضل سطر قصير ثانٍ هنا، أقل من عشرين كلمة.",who:"اسم العميل · 5argny"}
+  ]
+};
+
+const TEAM = {
+  en:[{name:"Name",role:"Founder, engineering"},{name:"Name",role:"Design"},{name:"Name",role:"SEO and analytics"},{name:"Name",role:"Delivery"}],
+  ar:[{name:"الاسم",role:"المؤسس، الهندسة"},{name:"الاسم",role:"التصميم"},{name:"الاسم",role:"السيو والتحليلات"},{name:"الاسم",role:"التسليم"}]
+};
+
+class Component extends DCLogic {
+  state = { lang:"en", cur:"sar", menu:false, sent:false };
+
+  layout = () => {
+    const wide = window.innerWidth >= 900;
+    const links = document.getElementById("ebn-navlinks");
+    const cta = document.getElementById("ebn-navcta");
+    const burger = document.getElementById("ebn-burger");
+    if (links) links.style.display = wide ? "flex" : "none";
+    if (cta) cta.style.display = wide ? "flex" : "none";
+    if (burger) burger.style.display = wide ? "none" : "flex";
+    if (wide && this.state.menu) this.setState({menu:false});
+  };
+
+  componentDidMount(){
+    this.layout();
+    window.addEventListener("resize", this.layout);
+    this.boot();
+  }
+
+  async boot(){
+    if (this.booting) return;
+    this.booting = true;
+    try {
+      const mod = await import("./ebn-motion.js");
+      this.fx = mod.createMotion();
+      await this.fx.ready;
+    } catch (err) {
+      console.warn("[ebneely] motion layer unavailable, revealing statically", err);
+      document.querySelectorAll("[data-reveal]").forEach(el => { el.style.opacity = "1"; el.style.transform = "none"; });
+      return;
+    }
+    this.fx.scan();
+  }
+
+  componentDidUpdate(){
+    this.layout();
+    if (this.fx) { this.fx.scan(); this.fx.menu(this.state.menu); }
+  }
+
+  componentWillUnmount(){
+    window.removeEventListener("resize", this.layout);
+    if (this.fx) this.fx.destroy();
+  }
+
+  renderVals(){
+    const ar = this.state.lang === "ar";
+    if (typeof document !== "undefined") {
+      document.documentElement.dir = ar ? "rtl" : "ltr";
+      document.documentElement.lang = ar ? "ar" : "en";
+    }
+    const t = ar ? AR : EN;
+    const k = ar ? "ar" : "en";
+    const cur = this.state.cur;
+    const tiers = TIERS[k].map(x => ({
+      name:x.name, for:x.for, items:x.items,
+      price:(cur === "sar" ? x.sar : x.usd),
+      unit:(cur === "sar" ? (ar ? "ريال" : "SAR") : "USD")
+    }));
+    const dark = "#17140F", light = "#F3F0E9";
+    return {
+      t, isEn:!ar, isAr:ar,
+      langLabel: ar ? "EN" : "ع",
+      services: SERVICES[k], steps: STEPS[k], tiers, quotes: QUOTES[k], team: TEAM[k], trusted: TRUSTED[k],
+      sendLabel: this.state.sent ? t.sent : t.send,
+      sarBg: cur === "sar" ? dark : "transparent",
+      sarFg: cur === "sar" ? light : "rgba(23,20,15,.66)",
+      usdBg: cur === "usd" ? dark : "transparent",
+      usdFg: cur === "usd" ? light : "rgba(23,20,15,.66)",
+      toggleLang: () => this.setState(s => ({lang: s.lang === "en" ? "ar" : "en"})),
+      setSar: () => this.setState({cur:"sar"}),
+      setUsd: () => this.setState({cur:"usd"}),
+      openMenu: () => this.setState({menu:true}),
+      closeMenu: () => this.setState({menu:false}),
+      submit: (e) => { e.preventDefault(); this.setState({sent:true}); }
+    };
+  }
+}
+</script>
+</body>
+</html>

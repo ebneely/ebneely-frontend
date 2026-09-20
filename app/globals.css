@@ -1,0 +1,54 @@
+/* ---------------------------------------------------------------------------
+   Copied verbatim from the prototype's <helmet> <style> block.
+   --------------------------------------------------------------------------- */
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#F3F0E9;color:#17140F;font-family:'Work Sans',system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+a:hover{color:#7A5F2E}
+[dir="rtl"] body{font-family:'IBM Plex Sans Arabic',system-ui,sans-serif}
+@keyframes ebn-cue{0%{transform:translateY(0);opacity:.25}50%{transform:translateY(7px);opacity:.85}100%{transform:translateY(0);opacity:.25}}
+[dir="rtl"] :not(#ebn-logo):not(#ebn-logo *){letter-spacing:normal !important;text-transform:none !important}
+[dir="rtl"] body,[dir="rtl"] h1,[dir="rtl"] h2,[dir="rtl"] h3,[dir="rtl"] p,[dir="rtl"] a,[dir="rtl"] span,[dir="rtl"] button,[dir="rtl"] input,[dir="rtl"] textarea,[dir="rtl"] blockquote,[dir="rtl"] figcaption,[dir="rtl"] label{font-family:'IBM Plex Sans Arabic',system-ui,sans-serif !important}
+#ebn-logo{direction:ltr}
+[dir="rtl"] #ebn-logo,[dir="rtl"] #ebn-logo *{direction:ltr !important;font-family:Archivo,sans-serif !important}
+[dir="rtl"] #ebn-logo span{letter-spacing:-.035em !important}
+@keyframes ebn-spin{to{transform:rotate(360deg)}}
+::selection{background:#17140F;color:#F3F0E9}
+
+/* ---------------------------------------------------------------------------
+   The prototype expresses hover and focus states as `style-hover` /
+   `style-focus` attributes, which its runtime applies over the inline style.
+   Inline styles win over a stylesheet, so these carry !important to reproduce
+   that same precedence. The declarations themselves are copied unchanged.
+
+   The generic `a:hover` rule above is deliberately left un-!important, exactly
+   as in the prototype: an anchor carrying an inline `color` keeps it on hover.
+   --------------------------------------------------------------------------- */
+
+/* nav links, "read the case", "02 projects" */
+.hv-ink:hover{color:#17140F !important}
+
+/* language toggle */
+.hv-lang:hover{background:rgba(23,20,15,.06) !important;border-color:rgba(23,20,15,.32) !important}
+
+/* filled dark buttons: nav CTA, hero primary, WhatsApp, case CTAs */
+.hv-gold:hover{background:#7A5F2E !important;color:#F3F0E9 !important}
+
+/* hero secondary, outlined on light */
+.hv-outline:hover{border-color:rgba(23,20,15,.66) !important;background:rgba(23,20,15,.04) !important}
+
+/* pricing tier CTA: outline inverts to solid */
+.hv-invert:hover{background:#17140F !important;color:#F3F0E9 !important}
+
+/* outlined on dark: "Email the studio" */
+.hv-lightborder:hover{border-color:rgba(243,240,233,.6) !important}
+
+/* contact channel cards */
+.hv-border:hover{border-color:rgba(23,20,15,.4) !important}
+
+/* submit buttons */
+.hv-bright:hover{filter:brightness(1.1) !important}
+
+/* form fields */
+.ebn-field:focus{border-color:#7A5F2E !important;background:rgba(243,240,233,.08) !important}

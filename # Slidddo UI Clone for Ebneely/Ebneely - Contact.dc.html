@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Work+Sans:wght@300;400;500&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#F3F0E9;color:#17140F;font-family:'Work Sans',system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+a:hover{color:#7A5F2E}
+[dir="rtl"] body{font-family:'IBM Plex Sans Arabic',system-ui,sans-serif}
+[dir="rtl"] :not(#ebn-logo):not(#ebn-logo *){letter-spacing:normal !important;text-transform:none !important}
+[dir="rtl"] body,[dir="rtl"] h1,[dir="rtl"] h2,[dir="rtl"] h3,[dir="rtl"] p,[dir="rtl"] a,[dir="rtl"] span,[dir="rtl"] button,[dir="rtl"] input,[dir="rtl"] textarea,[dir="rtl"] blockquote,[dir="rtl"] figcaption,[dir="rtl"] label{font-family:'IBM Plex Sans Arabic',system-ui,sans-serif !important}
+#ebn-logo{direction:ltr}
+[dir="rtl"] #ebn-logo,[dir="rtl"] #ebn-logo *{direction:ltr !important;font-family:Archivo,sans-serif !important}
+[dir="rtl"] #ebn-logo span{letter-spacing:-.035em !important}
+@keyframes ebn-spin{to{transform:rotate(360deg)}}
+::selection{background:#17140F;color:#F3F0E9}
+</style>
+<script>setTimeout(function(){var v=document.getElementById('ebn-veil'),r=document.getElementById('ebn-ring');if(v&&!v.getAttribute('data-claimed')){v.style.transition='opacity .6s ease';v.style.opacity='0';v.style.pointerEvents='none';if(r)r.parentNode&&r.parentNode.removeChild(r);}},3200);</script>
+</helmet>
+<div id="ebn-veil" style="position:fixed;inset:0;z-index:95;background:#14110D;opacity:1;pointer-events:auto;will-change:opacity"></div>
+<div id="ebn-ring" style="position:fixed;right:22px;bottom:22px;width:26px;height:26px;border-radius:999px;border:1.5px solid rgba(243,240,233,.2);border-top-color:#7A5F2E;z-index:96;pointer-events:none;animation:ebn-spin .9s linear infinite"></div>
+
+
+<div id="ebn-page" style="min-height:100vh">
+
+<header id="ebn-nav" style="position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:32px;height:56px;max-width:calc(100vw - 28px);padding:6px 18px 6px 6px;border-radius:30px;background:rgba(243,240,233,.5);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);box-shadow:0 0 0 1px rgba(23,20,15,.06);font-size:13px;font-weight:500;color:#17140F">
+  <a href="Ebneely - Home.dc.html" id="ebn-logo" style="display:flex;align-items:center;gap:10px;flex:none;padding-left:12px">
+    <span style="display:flex;flex-direction:column;gap:2.5px;width:22px">
+      <span style="height:3.5px;background:#17140F;width:60%;margin:0 auto;border-radius:1px"></span>
+      <span style="height:3.5px;background:#17140F;width:100%;border-radius:1px"></span>
+      <span style="height:3.5px;background:#17140F;width:100%;border-radius:1px"></span>
+    </span>
+    <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:17px;letter-spacing:-.035em">bneely<sup style="font-size:8px;font-weight:500;top:-.8em;position:relative">®</sup></span>
+  </a>
+  <nav id="ebn-navlinks" style="display:none;gap:32px;font-size:13px;font-weight:500;color:rgba(23,20,15,.72)">
+    <a href="Ebneely - Work.dc.html" style="transition:color .4s cubic-bezier(.44,0,.56,1)" style-hover="color:#17140F">{{ t.navWork }}</a>
+    <a href="Ebneely - Home.dc.html#services" style="transition:color .4s cubic-bezier(.44,0,.56,1)" style-hover="color:#17140F">{{ t.navServices }}</a>
+    <a href="Ebneely - Home.dc.html#pricing" style="transition:color .4s cubic-bezier(.44,0,.56,1)" style-hover="color:#17140F">{{ t.navPricing }}</a>
+    <a href="Ebneely - Contact.dc.html" style="color:#17140F;transition:color .4s cubic-bezier(.44,0,.56,1)">{{ t.navContact }}</a>
+  </nav>
+  <div style="display:flex;align-items:center;gap:8px;flex:none;margin-left:auto">
+    <button onClick="{{ toggleLang }}" aria-label="Toggle language" style="height:44px;min-width:44px;padding:0 13px;border:1px solid rgba(23,20,15,.14);background:transparent;border-radius:999px;font-family:'IBM Plex Sans Arabic','IBM Plex Mono',monospace;font-size:15px;font-weight:500;letter-spacing:.02em;color:#17140F;cursor:pointer;transition:background-color .4s cubic-bezier(.44,0,.56,1),border-color .4s cubic-bezier(.44,0,.56,1)" style-hover="background:rgba(23,20,15,.06);border-color:rgba(23,20,15,.32)">{{ langLabel }}</button>
+    <button id="ebn-burger" onClick="{{ openMenu }}" aria-label="Menu" style="width:44px;height:44px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;border:1px solid rgba(23,20,15,.14);background:transparent;border-radius:999px;cursor:pointer">
+      <span style="width:15px;height:1.5px;background:#17140F"></span>
+      <span style="width:15px;height:1.5px;background:#17140F"></span>
+    </button>
+  </div>
+</header>
+
+<div id="ebn-overlay" style="position:fixed;inset:8px;border-radius:32px;z-index:70;background:#14110D;color:#F3F0E9;display:flex;flex-direction:column;padding:22px 24px 40px;opacity:0;visibility:hidden;transform:translateY(-10px)">
+  <div style="display:flex;justify-content:flex-end">
+    <button onClick="{{ closeMenu }}" aria-label="Close" style="width:44px;height:44px;border:1px solid rgba(243,240,233,.25);background:transparent;border-radius:999px;color:#F3F0E9;font-size:18px;line-height:1;cursor:pointer">×</button>
+  </div>
+  <nav style="margin-top:auto;margin-bottom:auto;display:flex;flex-direction:column;gap:6px">
+    <a href="Ebneely - Work.dc.html" onClick="{{ closeMenu }}" style="font-family:Archivo,sans-serif;font-size:36px;font-weight:600;letter-spacing:-.035em;padding:8px 0">{{ t.navWork }}</a>
+    <a href="Ebneely - Home.dc.html#services" onClick="{{ closeMenu }}" style="font-family:Archivo,sans-serif;font-size:36px;font-weight:600;letter-spacing:-.035em;padding:8px 0">{{ t.navServices }}</a>
+    <a href="Ebneely - Home.dc.html#pricing" onClick="{{ closeMenu }}" style="font-family:Archivo,sans-serif;font-size:36px;font-weight:600;letter-spacing:-.035em;padding:8px 0">{{ t.navPricing }}</a>
+    <a href="Ebneely - Contact.dc.html" onClick="{{ closeMenu }}" style="font-family:Archivo,sans-serif;font-size:36px;font-weight:600;letter-spacing:-.035em;padding:8px 0">{{ t.navContact }}</a>
+  </nav>
+</div>
+
+<section style="max-width:1280px;margin:0 auto;padding:150px 20px 0">
+  <div data-hero>
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(23,20,15,.66);margin:0 0 22px">{{ t.eyebrow }}</p>
+    <h1 style="font-family:Archivo,sans-serif;font-weight:600;font-size:clamp(38px,9vw,88px);line-height:.96;letter-spacing:-.045em;margin:0;max-width:18ch">{{ t.title }}</h1>
+    <p style="max-width:520px;margin:24px 0 0;font-size:clamp(15px,4vw,18px);line-height:1.6;color:rgba(23,20,15,.66)">{{ t.lede }}</p>
+  </div>
+</section>
+
+<section style="max-width:1280px;margin:0 auto;padding:56px 20px 0">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:12px">
+    <sc-for list="{{ channels }}" as="c" hint-placeholder-count="3">
+      <a href="{{ c.href }}" data-reveal data-card style="border:1px solid rgba(23,20,15,.14);border-radius:26px;padding:26px 24px 28px;display:flex;flex-direction:column;gap:9px;transition:box-shadow .3s cubic-bezier(.44,0,.56,1),border-color .3s cubic-bezier(.44,0,.56,1)" style-hover="border-color:rgba(23,20,15,.4)">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(23,20,15,.66)">{{ c.k }}</span>
+        <span style="font-family:Archivo,sans-serif;font-weight:500;font-size:19px;letter-spacing:-.025em">{{ c.v }}</span>
+        <span style="font-size:14px;line-height:1.55;color:rgba(23,20,15,.64)">{{ c.note }}</span>
+      </a>
+    </sc-for>
+  </div>
+</section>
+
+<section style="max-width:1280px;margin:0 auto;padding:88px 20px 0">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:48px 40px;align-items:start">
+    <div data-reveal>
+      <h2 style="font-family:Archivo,sans-serif;font-weight:600;font-size:clamp(26px,6vw,42px);line-height:1;letter-spacing:-.04em;margin:0 0 18px">{{ t.formTitle }}</h2>
+      <p style="margin:0 0 26px;max-width:42ch;font-size:15.5px;line-height:1.65;color:rgba(23,20,15,.66)">{{ t.formLede }}</p>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <sc-for list="{{ expect }}" as="e" hint-placeholder-count="3">
+          <div style="display:flex;gap:11px;align-items:flex-start;font-size:14.5px;line-height:1.55;color:rgba(23,20,15,.72)">
+            <span style="width:5px;height:5px;border-radius:999px;background:#7A5F2E;flex:none;margin-top:8px"></span>
+            <span>{{ e }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <form data-reveal onSubmit="{{ submit }}" style="display:flex;flex-direction:column;gap:14px;background:#14110D;color:#F3F0E9;border-radius:30px;padding:32px 28px 34px">
+      <label style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(243,240,233,.58)">{{ t.fName }}</span>
+        <input type="text" style="height:54px;background:rgba(243,240,233,.05);border:1px solid rgba(243,240,233,.2);border-radius:27px;padding:0 20px;color:#F3F0E9;font-family:'Work Sans',sans-serif;font-size:16px;outline:none;transition:border-color .4s cubic-bezier(.44,0,.56,1),background-color .4s cubic-bezier(.44,0,.56,1)" style-focus="border-color:#7A5F2E;background:rgba(243,240,233,.08)">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(243,240,233,.58)">{{ t.fContact }}</span>
+        <input type="text" style="height:54px;background:rgba(243,240,233,.05);border:1px solid rgba(243,240,233,.2);border-radius:27px;padding:0 20px;color:#F3F0E9;font-family:'Work Sans',sans-serif;font-size:16px;outline:none;transition:border-color .4s cubic-bezier(.44,0,.56,1),background-color .4s cubic-bezier(.44,0,.56,1)" style-focus="border-color:#7A5F2E;background:rgba(243,240,233,.08)">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(243,240,233,.58)">{{ t.fBudget }}</span>
+        <input type="text" style="height:54px;background:rgba(243,240,233,.05);border:1px solid rgba(243,240,233,.2);border-radius:27px;padding:0 20px;color:#F3F0E9;font-family:'Work Sans',sans-serif;font-size:16px;outline:none;transition:border-color .4s cubic-bezier(.44,0,.56,1),background-color .4s cubic-bezier(.44,0,.56,1)" style-focus="border-color:#7A5F2E;background:rgba(243,240,233,.08)">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(243,240,233,.58)">{{ t.fBrief }}</span>
+        <textarea rows="4" style="background:rgba(243,240,233,.05);border:1px solid rgba(243,240,233,.2);border-radius:24px;color:#F3F0E9;font-family:'Work Sans',sans-serif;font-size:16px;outline:none;resize:vertical;padding:16px 20px;transition:border-color .4s cubic-bezier(.44,0,.56,1),background-color .4s cubic-bezier(.44,0,.56,1)" style-focus="border-color:#7A5F2E;background:rgba(243,240,233,.08)"></textarea>
+      </label>
+      <button type="submit" style="margin-top:8px;height:48px;background:#7A5F2E;border:0;border-radius:999px;color:#F3F0E9;font-family:'Work Sans',sans-serif;font-size:14px;font-weight:500;cursor:pointer;transition:filter .3s cubic-bezier(.44,0,.56,1)" style-hover="filter:brightness(1.1)">{{ sendLabel }}</button>
+    </form>
+  </div>
+</section>
+
+<section style="max-width:1280px;margin:0 auto;padding:88px 20px 96px">
+  <h2 data-reveal style="font-family:Archivo,sans-serif;font-weight:600;font-size:clamp(26px,6vw,42px);line-height:1;letter-spacing:-.04em;margin:0 0 30px">{{ t.faqTitle }}</h2>
+  <div style="border-top:1px solid rgba(23,20,15,.14)">
+    <sc-for list="{{ faq }}" as="q" hint-placeholder-count="4">
+      <div data-reveal data-row style="display:flex;flex-wrap:wrap;gap:8px 32px;padding:24px 14px;border-bottom:1px solid rgba(23,20,15,.14);border-radius:22px;transition:background-color .4s cubic-bezier(.44,0,.56,1)">
+        <h3 style="font-family:Archivo,sans-serif;font-weight:500;font-size:clamp(18px,4.5vw,24px);letter-spacing:-.025em;margin:0;flex:1 1 260px;min-width:0">{{ q.q }}</h3>
+        <p style="margin:0;flex:1 1 320px;min-width:0;font-size:14.5px;line-height:1.65;color:rgba(23,20,15,.64)">{{ q.a }}</p>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<footer style="background:#14110D;color:#F3F0E9;padding:40px 20px">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(243,240,233,.58)">
+    <span>Ebneely® — Riyadh · Cairo</span>
+    <span>© MMXXVI</span>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const EN = {
+  navWork:"Work", navServices:"Services", navPricing:"Pricing", navContact:"Contact",
+  eyebrow:"Contact — one working day",
+  title:"Tell us what you are building.",
+  lede:"A brief is enough to start. We reply with scope, timeline and a fixed price before anyone writes code.",
+  formTitle:"Send a brief",
+  formLede:"The more you tell us, the more precise the quote. None of it is binding.",
+  fName:"Name", fContact:"Email or WhatsApp", fBudget:"Budget range", fBrief:"What are you building",
+  send:"Send brief", sent:"Received — we will reply within one working day",
+  faqTitle:"Before you ask"
+};
+
+const AR = {
+  navWork:"أعمالنا", navServices:"خدماتنا", navPricing:"الأسعار", navContact:"تواصل",
+  eyebrow:"تواصل — رد خلال يوم عمل",
+  title:"أخبرنا بما تبنيه.",
+  lede:"موجز واحد يكفي للبدء. نرد بالنطاق والجدول الزمني وسعر ثابت قبل أن يكتب أحد أي كود.",
+  formTitle:"أرسل موجزاً",
+  formLede:"كلما زادت التفاصيل، كان التسعير أدق. ولا شيء من هذا ملزم.",
+  fName:"الاسم", fContact:"البريد أو واتساب", fBudget:"نطاق الميزانية", fBrief:"ما الذي تبنيه",
+  send:"إرسال الموجز", sent:"تم الاستلام — سنرد خلال يوم عمل واحد",
+  faqTitle:"قبل أن تسأل"
+};
+
+const CHANNELS = {
+  en:[
+    {k:"WhatsApp",v:"Message the studio",note:"Fastest route. Voice notes welcome, Arabic or English.",href:"#"},
+    {k:"Email",v:"studio@ebneely.com",note:"Best for briefs with attachments or existing specs.",href:"#"},
+    {k:"Call",v:"Book 20 minutes",note:"A scoping call. We map what exists and what it should cost.",href:"#"}
+  ],
+  ar:[
+    {k:"واتساب",v:"راسل الاستوديو",note:"أسرع طريق. الرسائل الصوتية مرحب بها، عربي أو إنجليزي.",href:"#"},
+    {k:"البريد",v:"studio@ebneely.com",note:"الأفضل للموجزات التي تحتوي مرفقات أو مواصفات جاهزة.",href:"#"},
+    {k:"مكالمة",v:"احجز ٢٠ دقيقة",note:"مكالمة تحديد نطاق. نحدد ما هو قائم وما يجب أن يكلفه.",href:"#"}
+  ]
+};
+
+const EXPECT = {
+  en:[
+    "A reply within one working day, from a person who will work on the build.",
+    "Scope, sitemap and a fixed price before any commitment.",
+    "No retainer lock-in. Monthly work is monthly."
+  ],
+  ar:[
+    "رد خلال يوم عمل واحد، من شخص سيعمل على التنفيذ فعلاً.",
+    "النطاق وخريطة الموقع وسعر ثابت قبل أي التزام.",
+    "لا ارتباط طويل بعقود الدعم. العمل الشهري شهري."
+  ]
+};
+
+const FAQ = {
+  en:[
+    {q:"How long does a site take?",a:"A brand site is three weeks from signed scope. A storefront is six to eight. Enterprise systems are quoted per phase."},
+    {q:"Do you work in Arabic?",a:"Yes, Arabic-first with full RTL, and bilingual by default. Arabic copy can be drafted by us or supplied by you."},
+    {q:"Why cheaper than Gulf agencies?",a:"A small senior team and no account-management layer. The same engineers who scope the work build it."},
+    {q:"Who owns the code?",a:"You do, on handover, in your own repository. No licence, no hosting lock-in."}
+  ],
+  ar:[
+    {q:"كم يستغرق الموقع؟",a:"موقع العلامة ثلاثة أسابيع من اعتماد النطاق. المتجر من ستة إلى ثمانية أسابيع. والأنظمة المؤسسية تُسعَّر على مراحل."},
+    {q:"هل تعملون بالعربية؟",a:"نعم، عربي أولاً بدعم RTL كامل، وثنائي اللغة افتراضياً. ويمكننا صياغة النص العربي أو استلامه منك."},
+    {q:"لماذا أقل من وكالات الخليج؟",a:"فريق صغير بخبرة عالية وبلا طبقة إدارة حسابات. المهندسون الذين يحددون النطاق هم من ينفذونه."},
+    {q:"من يملك الكود؟",a:"أنت، عند التسليم، في مستودعك الخاص. بلا ترخيص وبلا ارتباط باستضافة."}
+  ]
+};
+
+class Component extends DCLogic {
+  state = { lang:"en", menu:false, sent:false };
+
+  layout = () => {
+    const wide = window.innerWidth >= 900;
+    const links = document.getElementById("ebn-navlinks");
+    const burger = document.getElementById("ebn-burger");
+    if (links) links.style.display = wide ? "flex" : "none";
+    if (burger) burger.style.display = wide ? "none" : "flex";
+    if (wide && this.state.menu) this.setState({menu:false});
+  };
+
+  componentDidMount(){
+    this.layout();
+    window.addEventListener("resize", this.layout);
+    this.boot();
+  }
+
+  async boot(){
+    if (this.booting) return;
+    this.booting = true;
+    try {
+      const mod = await import("./ebn-motion.js");
+      this.fx = mod.createMotion();
+      await this.fx.ready;
+    } catch (err) {
+      console.warn("[ebneely] motion layer unavailable", err);
+      document.querySelectorAll("[data-reveal]").forEach(el => { el.style.opacity = "1"; el.style.transform = "none"; });
+      return;
+    }
+    this.fx.scan();
+  }
+
+  componentDidUpdate(){
+    this.layout();
+    if (this.fx) { this.fx.scan(); this.fx.menu(this.state.menu); }
+  }
+
+  componentWillUnmount(){
+    window.removeEventListener("resize", this.layout);
+    if (this.fx) this.fx.destroy();
+  }
+
+  renderVals(){
+    const ar = this.state.lang === "ar";
+    if (typeof document !== "undefined") {
+      document.documentElement.dir = ar ? "rtl" : "ltr";
+      document.documentElement.lang = ar ? "ar" : "en";
+    }
+    const k = ar ? "ar" : "en";
+    const t = ar ? AR : EN;
+    return {
+      t,
+      langLabel: ar ? "EN" : "ع",
+      channels: CHANNELS[k], expect: EXPECT[k], faq: FAQ[k],
+      sendLabel: this.state.sent ? t.sent : t.send,
+      toggleLang: () => this.setState(s => ({lang: s.lang === "en" ? "ar" : "en"})),
+      openMenu: () => this.setState({menu:true}),
+      closeMenu: () => this.setState({menu:false}),
+      submit: (e) => { e.preventDefault(); this.setState({sent:true}); }
+    };
+  }
+}
+</script>
+</body>
+</html>

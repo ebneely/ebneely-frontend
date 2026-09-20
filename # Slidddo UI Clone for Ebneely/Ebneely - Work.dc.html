@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Work+Sans:wght@300;400;500&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#F3F0E9;color:#17140F;font-family:'Work Sans',system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+a:hover{color:#7A5F2E}
+[dir="rtl"] body{font-family:'IBM Plex Sans Arabic',system-ui,sans-serif}
+[dir="rtl"] :not(#ebn-logo):not(#ebn-logo *){letter-spacing:normal !important;text-transform:none !important}
+[dir="rtl"] body,[dir="rtl"] h1,[dir="rtl"] h2,[dir="rtl"] h3,[dir="rtl"] p,[dir="rtl"] a,[dir="rtl"] span,[dir="rtl"] button,[dir="rtl"] input,[dir="rtl"] textarea,[dir="rtl"] blockquote,[dir="rtl"] figcaption,[dir="rtl"] label{font-family:'IBM Plex Sans Arabic',system-ui,sans-serif !important}
+#ebn-logo{direction:ltr}
+[dir="rtl"] #ebn-logo,[dir="rtl"] #ebn-logo *{direction:ltr !important;font-family:Archivo,sans-serif !important}
+[dir="rtl"] #ebn-logo span{letter-spacing:-.035em !important}
+@keyframes ebn-spin{to{transform:rotate(360deg)}}
+::selection{background:#17140F;color:#F3F0E9}
+</style>
+<script>setTimeout(function(){var v=document.getElementById('ebn-veil'),r=document.getElementById('ebn-ring');if(v&&!v.getAttribute('data-claimed')){v.style.transition='opacity .6s ease';v.style.opacity='0';v.style.pointerEvents='none';if(r)r.parentNode&&r.parentNode.removeChild(r);}},3200);</script>
+</helmet>
+<div id="ebn-veil" style="position:fixed;inset:0;z-index:95;background:#14110D;opacity:1;pointer-events:auto;will-change:opacity"></div>
+<div id="ebn-ring" style="position:fixed;right:22px;bottom:22px;width:26px;height:26px;border-radius:999px;border:1.5px solid rgba(243,240,233,.2);border-top-color:#7A5F2E;z-index:96;pointer-events:none;animation:ebn-spin .9s linear infinite"></div>
+
+
+<div id="ebn-page" style="min-height:100vh">
+
+<header id="ebn-nav" style="position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:32px;height:56px;max-width:calc(100vw - 28px);padding:6px 18px 6px 6px;border-radius:30px;background:rgba(243,240,233,.5);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);box-shadow:0 0 0 1px rgba(23,20,15,.06);font-size:13px;font-weight:500;color:#17140F">
+  <a href="Ebneely - Home.dc.html" id="ebn-logo" style="display:flex;align-items:center;gap:10px;flex:none;padding-left:12px">
+    <span style="display:flex;flex-direction:column;gap:2.5px;width:22px">
+      <span style="height:3.5px;background:#17140F;width:60%;margin:0 auto;border-radius:1px"></span>
+      <span style="height:3.5px;background:#17140F;width:100%;border-radius:1px"></span>
+      <span style="height:3.5px;background:#17140F;width:100%;border-radius:1px"></span>
+    </span>
+    <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:17px;letter-spacing:-.035em">bneely<sup style="font-size:8px;font-weight:500;top:-.8em;position:relative">®</sup></span>
+  </a>
+  <nav id="ebn-navlinks" style="display:none;gap:32px;font-size:13px;font-weight:500;color:rgba(23,20,15,.72)">
+    <a href="Ebneely - Work.dc.html" style="color:#17140F;transition:color .4s cubic-bezier(.44,0,.56,1)">{{ t.navWork }}</a>
+    <a href="Ebneely - Home.dc.html#services" style="transition:color .4s cubic-bezier(.44,0,.56,1)" style-hover="color:#17140F">{{ t.navServices }}</a>
+    <a href="Ebneely - Home.dc.html#pricing" style="transition:color .4s cubic-bezier(.44,0,.56,1)" style-hover="color:#17140F">{{ t.navPricing }}</a>
+    <a href="Ebneely - Contact.dc.html" style="transition:color .4s cubic-bezier(.44,0,.56,1)" style-hover="color:#17140F">{{ t.navContact }}</a>
+  </nav>
+  <div style="display:flex;align-items:center;gap:8px;flex:none;margin-left:auto">
+    <button onClick="{{ toggleLang }}" aria-label="Toggle language" style="height:44px;min-width:44px;padding:0 13px;border:1px solid rgba(23,20,15,.14);background:transparent;border-radius:999px;font-family:'IBM Plex Sans Arabic','IBM Plex Mono',monospace;font-size:15px;font-weight:500;letter-spacing:.02em;color:#17140F;cursor:pointer;transition:background-color .4s cubic-bezier(.44,0,.56,1),border-color .4s cubic-bezier(.44,0,.56,1)" style-hover="background:rgba(23,20,15,.06);border-color:rgba(23,20,15,.32)">{{ langLabel }}</button>
+    <a href="Ebneely - Contact.dc.html" id="ebn-navcta" style="display:none;align-items:center;height:44px;padding:0 20px;background:#17140F;color:#F3F0E9;border-radius:999px;font-size:13px;font-weight:500;transition:background-color .3s cubic-bezier(.44,0,.56,1)" style-hover="background:#7A5F2E;color:#F3F0E9">{{ t.ctaNav }}</a>
+    <button id="ebn-burger" onClick="{{ openMenu }}" aria-label="Menu" style="width:44px;height:44px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;border:1px solid rgba(23,20,15,.14);background:transparent;border-radius:999px;cursor:pointer">
+      <span style="width:15px;height:1.5px;background:#17140F"></span>
+      <span style="width:15px;height:1.5px;background:#17140F"></span>
+    </button>
+  </div>
+</header>
+
+<div id="ebn-overlay" style="position:fixed;inset:8px;border-radius:32px;z-index:70;background:#14110D;color:#F3F0E9;display:flex;flex-direction:column;padding:22px 24px 40px;opacity:0;visibility:hidden;transform:translateY(-10px)">
+  <div style="display:flex;justify-content:flex-end">
+    <button onClick="{{ closeMenu }}" aria-label="Close" style="width:44px;height:44px;border:1px solid rgba(243,240,233,.25);background:transparent;border-radius:999px;color:#F3F0E9;font-size:18px;line-height:1;cursor:pointer">×</button>
+  </div>
+  <nav style="margin-top:auto;margin-bottom:auto;display:flex;flex-direction:column;gap:6px">
+    <a href="Ebneely - Work.dc.html" onClick="{{ closeMenu }}" style="font-family:Archivo,sans-serif;font-size:36px;font-weight:600;letter-spacing:-.035em;padding:8px 0">{{ t.navWork }}</a>
+    <a href="Ebneely - Home.dc.html#services" onClick="{{ closeMenu }}" style="font-family:Archivo,sans-serif;font-size:36px;font-weight:600;letter-spacing:-.035em;padding:8px 0">{{ t.navServices }}</a>
+    <a href="Ebneely - Home.dc.html#pricing" onClick="{{ closeMenu }}" style="font-family:Archivo,sans-serif;font-size:36px;font-weight:600;letter-spacing:-.035em;padding:8px 0">{{ t.navPricing }}</a>
+    <a href="Ebneely - Contact.dc.html" onClick="{{ closeMenu }}" style="font-family:Archivo,sans-serif;font-size:36px;font-weight:600;letter-spacing:-.035em;padding:8px 0">{{ t.navContact }}</a>
+  </nav>
+  <a href="Ebneely - Contact.dc.html" onClick="{{ closeMenu }}" style="display:flex;align-items:center;justify-content:center;height:56px;background:#F3F0E9;color:#17140F;border-radius:999px;font-size:15px">{{ t.ctaNav }}</a>
+</div>
+
+<section style="max-width:1280px;margin:0 auto;padding:150px 20px 0">
+  <div data-hero>
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(23,20,15,.66);margin:0 0 22px">{{ t.eyebrow }}</p>
+    <h1 style="font-family:Archivo,sans-serif;font-weight:600;font-size:clamp(38px,9vw,88px);line-height:.96;letter-spacing:-.045em;margin:0;max-width:16ch">{{ t.title }}</h1>
+    <p style="max-width:520px;margin:24px 0 0;font-size:clamp(15px,4vw,18px);line-height:1.6;color:rgba(23,20,15,.66)">{{ t.lede }}</p>
+  </div>
+</section>
+
+<section style="max-width:1280px;margin:0 auto;padding:56px 20px 20px;display:flex;flex-direction:column;gap:18px">
+  <sc-for list="{{ projects }}" as="pr" hint-placeholder-count="2">
+    <a href="{{ pr.href }}" data-reveal data-card style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:0;background:{{ pr.bg }};color:{{ pr.fg }};border-radius:30px;overflow:hidden;transition:box-shadow .3s cubic-bezier(.44,0,.56,1)">
+      <div style="aspect-ratio:16/11;background-image:repeating-linear-gradient(135deg,{{ pr.stripe }} 0 1px,transparent 1px 9px);display:flex;align-items:center;justify-content:center">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:{{ pr.muted }};text-align:center;padding:0 18px">{{ pr.shot }}</span>
+      </div>
+      <div style="padding:32px 30px 36px;display:flex;flex-direction:column;gap:16px;justify-content:center">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">
+          <h2 style="font-family:Archivo,sans-serif;font-weight:600;font-size:clamp(26px,6vw,38px);letter-spacing:-.035em;margin:0">{{ pr.name }}</h2>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:{{ pr.muted }}">{{ pr.year }}</span>
+        </div>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:{{ pr.body }}">{{ pr.desc }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <sc-for list="{{ pr.tags }}" as="tg" hint-placeholder-count="3">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border:1px solid {{ pr.chip }};border-radius:999px;color:{{ pr.body }}">{{ tg }}</span>
+          </sc-for>
+        </div>
+        <span style="display:flex;align-items:center;justify-content:center;height:48px;width:fit-content;padding:0 24px;border-radius:999px;background:{{ pr.btnBg }};color:{{ pr.btnFg }};font-size:14px;font-weight:500;margin-top:4px">{{ pr.cta }}</span>
+      </div>
+    </a>
+  </sc-for>
+</section>
+
+<section style="max-width:1280px;margin:0 auto;padding:40px 20px 96px">
+  <div data-reveal style="border:1px solid rgba(23,20,15,.16);border-radius:30px;padding:40px 30px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px">
+    <div>
+      <h2 style="font-family:Archivo,sans-serif;font-weight:600;font-size:clamp(24px,5.5vw,34px);letter-spacing:-.035em;margin:0 0 8px">{{ t.nextTitle }}</h2>
+      <p style="margin:0;max-width:44ch;font-size:15px;line-height:1.6;color:rgba(23,20,15,.64)">{{ t.nextLede }}</p>
+    </div>
+    <a href="Ebneely - Contact.dc.html" style="display:flex;align-items:center;justify-content:center;height:48px;padding:0 24px;background:#17140F;color:#F3F0E9;border-radius:999px;font-size:14px;font-weight:500;transition:background-color .3s cubic-bezier(.44,0,.56,1)" style-hover="background:#7A5F2E;color:#F3F0E9">{{ t.ctaNav }}</a>
+  </div>
+</section>
+
+<footer style="background:#14110D;color:#F3F0E9;padding:40px 20px">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(243,240,233,.58)">
+    <span>Ebneely® — Riyadh · Cairo</span>
+    <span>© MMXXVI</span>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const EN = {
+  navWork:"Work", navServices:"Services", navPricing:"Pricing", navContact:"Contact", ctaNav:"Start a project",
+  eyebrow:"Selected work — 02 projects",
+  title:"Systems we shipped.",
+  lede:"Two live builds. Both run in production today, both bilingual, both handling real money.",
+  nextTitle:"Your project could be third.",
+  nextLede:"Send a brief and we reply within one working day with scope, timeline and a fixed price."
+};
+
+const AR = {
+  navWork:"أعمالنا", navServices:"خدماتنا", navPricing:"الأسعار", navContact:"تواصل", ctaNav:"ابدأ مشروعك",
+  eyebrow:"أعمال مختارة — ٠٢ مشروع",
+  title:"أنظمة أطلقناها.",
+  lede:"مشروعان مباشران. كلاهما يعمل في الإنتاج اليوم، وكلاهما ثنائي اللغة، ويتعامل مع أموال حقيقية.",
+  nextTitle:"مشروعك قد يكون الثالث.",
+  nextLede:"أرسل موجزاً ونرد خلال يوم عمل واحد بالنطاق والجدول الزمني وسعر ثابت."
+};
+
+const LIGHT = { bg:"#EAE6DC", fg:"#17140F", body:"rgba(23,20,15,.64)", muted:"rgba(23,20,15,.66)",
+  stripe:"rgba(23,20,15,.07)", chip:"rgba(23,20,15,.16)", btnBg:"#17140F", btnFg:"#F3F0E9" };
+const DARK = { bg:"#14110D", fg:"#F3F0E9", body:"rgba(243,240,233,.66)", muted:"rgba(243,240,233,.58)",
+  stripe:"rgba(243,240,233,.08)", chip:"rgba(243,240,233,.2)", btnBg:"#F3F0E9", btnFg:"#17140F" };
+
+const PROJECTS = {
+  en:[
+    { ...LIGHT, name:"MiniRue", year:"2026", href:"Ebneely - Case MiniRue.dc.html",
+      shot:"MiniRue storefront screenshot",
+      desc:"Original cosmetics and perfumes in luxury packaging. Storefront, multi-category catalogue, image pipeline, Trustpilot verification and Instapay checkout.",
+      tags:["E-commerce","Next.js","SEO","Trustpilot"], cta:"Read the case study" },
+    { ...DARK, name:"5argny", year:"2026",
+      btnBg:"rgba(243,240,233,.12)", btnFg:"rgba(243,240,233,.7)",
+      shot:"5argny booking flow screenshot",
+      desc:"Tours and travel operator. Trip catalogue, enquiry-to-booking flow and an Arabic-first interface. Details to confirm with you.",
+      tags:["Booking","Arabic RTL","Payments"], cta:"Case study coming" }
+  ],
+  ar:[
+    { ...LIGHT, name:"MiniRue", year:"2026", href:"Ebneely - Case MiniRue.dc.html",
+      shot:"لقطة شاشة متجر MiniRue",
+      desc:"مستحضرات تجميل وعطور أصلية بتغليف فاخر. متجر إلكتروني، كتالوج متعدد الأقسام، معالجة للصور، توثيق Trustpilot، ودفع عبر InstaPay.",
+      tags:["تجارة إلكترونية","Next.js","سيو","Trustpilot"], cta:"اقرأ دراسة الحالة" },
+    { ...DARK, name:"5argny", year:"2026",
+      btnBg:"rgba(243,240,233,.12)", btnFg:"rgba(243,240,233,.7)",
+      shot:"لقطة شاشة مسار الحجز 5argny",
+      desc:"شركة رحلات وسفر. كتالوج للرحلات، ومسار من الاستفسار إلى الحجز، وواجهة عربية أولاً. التفاصيل بحاجة للتأكيد.",
+      tags:["حجز","عربي RTL","مدفوعات"], cta:"دراسة الحالة قريباً" }
+  ]
+};
+
+class Component extends DCLogic {
+  state = { lang:"en", menu:false };
+
+  layout = () => {
+    const wide = window.innerWidth >= 900;
+    const links = document.getElementById("ebn-navlinks");
+    const cta = document.getElementById("ebn-navcta");
+    const burger = document.getElementById("ebn-burger");
+    if (links) links.style.display = wide ? "flex" : "none";
+    if (cta) cta.style.display = wide ? "flex" : "none";
+    if (burger) burger.style.display = wide ? "none" : "flex";
+    if (wide && this.state.menu) this.setState({menu:false});
+  };
+
+  componentDidMount(){
+    this.layout();
+    window.addEventListener("resize", this.layout);
+    this.boot();
+  }
+
+  async boot(){
+    if (this.booting) return;
+    this.booting = true;
+    try {
+      const mod = await import("./ebn-motion.js");
+      this.fx = mod.createMotion();
+      await this.fx.ready;
+    } catch (err) {
+      console.warn("[ebneely] motion layer unavailable", err);
+      document.querySelectorAll("[data-reveal]").forEach(el => { el.style.opacity = "1"; el.style.transform = "none"; });
+      return;
+    }
+    this.fx.scan();
+  }
+
+  componentDidUpdate(){
+    this.layout();
+    if (this.fx) { this.fx.scan(); this.fx.menu(this.state.menu); }
+  }
+
+  componentWillUnmount(){
+    window.removeEventListener("resize", this.layout);
+    if (this.fx) this.fx.destroy();
+  }
+
+  renderVals(){
+    const ar = this.state.lang === "ar";
+    if (typeof document !== "undefined") {
+      document.documentElement.dir = ar ? "rtl" : "ltr";
+      document.documentElement.lang = ar ? "ar" : "en";
+    }
+    return {
+      t: ar ? AR : EN,
+      langLabel: ar ? "EN" : "ع",
+      projects: PROJECTS[ar ? "ar" : "en"],
+      toggleLang: () => this.setState(s => ({lang: s.lang === "en" ? "ar" : "en"})),
+      openMenu: () => this.setState({menu:true}),
+      closeMenu: () => this.setState({menu:false})
+    };
+  }
+}
+</script>
+</body>
+</html>
