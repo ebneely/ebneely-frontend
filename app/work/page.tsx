@@ -74,16 +74,12 @@ export default function WorkPage() {
                 backgroundImage: `repeating-linear-gradient(135deg,${pr.stripe} 0 1px,transparent 1px 9px)`,
               }}
             >
-              <span
-                style={{
-                  ...s(
-                    "font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:0 18px",
-                  ),
-                  color: pr.muted,
-                }}
-              >
-                {pr.shot}
-              </span>
+              <img
+                src={pr.logo}
+                alt={pr.name}
+                height={160}
+                style={{ ...s("display:block;width:auto"), height: pr.logoSize }}
+              />
             </div>
             <div
               style={s(

@@ -26,6 +26,9 @@ export type Project = typeof LIGHT & {
   year: string;
   href?: string;
   shot: string;
+  logo: string;
+  /** Logo height as a share of the image panel. */
+  logoSize: string;
   desc: string;
   tags: string[];
   cta: string;
@@ -33,22 +36,22 @@ export type Project = typeof LIGHT & {
 
 export const PROJECTS: { en: Project[]; ar: Project[] } = {
   en:[
-    { ...LIGHT, name:"MiniRue", year:"2026", href:"/work/minirue",
+    { ...LIGHT, name:"MiniRue", year:"2026", href:"/work/minirue", logo:"/brand/minirue-ink.png", logoSize:"34%",
       shot:"MiniRue storefront screenshot",
       desc:"Original cosmetics and perfumes in luxury packaging. Storefront, multi-category catalogue, image pipeline, Trustpilot verification and Instapay checkout.",
       tags:["E-commerce","Next.js","SEO","Trustpilot"], cta:"Read the case study" },
-    { ...DARK, name:"5argny", year:"2026",
+    { ...DARK, name:"5argny", year:"2026", logo:"/brand/5argny.png", logoSize:"42%",
       btnBg:"rgba(243,240,233,.12)", btnFg:"rgba(243,240,233,.7)",
       shot:"5argny booking flow screenshot",
       desc:"Tours and travel operator. Trip catalogue, enquiry-to-booking flow and an Arabic-first interface. Details to confirm with you.",
       tags:["Booking","Arabic RTL","Payments"], cta:"Case study coming" }
   ],
   ar:[
-    { ...LIGHT, name:"MiniRue", year:"2026", href:"/work/minirue",
+    { ...LIGHT, name:"MiniRue", year:"2026", href:"/work/minirue", logo:"/brand/minirue-ink.png", logoSize:"34%",
       shot:"لقطة شاشة متجر MiniRue",
       desc:"مستحضرات تجميل وعطور أصلية بتغليف فاخر. متجر إلكتروني، كتالوج متعدد الأقسام، معالجة للصور، توثيق Trustpilot، ودفع عبر InstaPay.",
       tags:["تجارة إلكترونية","Next.js","سيو","Trustpilot"], cta:"اقرأ دراسة الحالة" },
-    { ...DARK, name:"5argny", year:"2026",
+    { ...DARK, name:"5argny", year:"2026", logo:"/brand/5argny.png", logoSize:"42%",
       btnBg:"rgba(243,240,233,.12)", btnFg:"rgba(243,240,233,.7)",
       shot:"لقطة شاشة مسار الحجز 5argny",
       desc:"شركة رحلات وسفر. كتالوج للرحلات، ومسار من الاستفسار إلى الحجز، وواجهة عربية أولاً. التفاصيل بحاجة للتأكيد.",

@@ -79,17 +79,19 @@ export const TIERS = {
   ]
 };
 
-export const TRUSTED = {
+export type Trusted = { name: string; kind: string; logo?: string; logoH?: number };
+
+export const TRUSTED: { en: Trusted[]; ar: Trusted[] } = {
   en:[
-    {name:"MiniRue",kind:"Cosmetics · Egypt"},
-    {name:"5argny",kind:"Travel · Egypt"},
+    {name:"MiniRue",kind:"Cosmetics · Egypt",logo:"/brand/minirue-ink.png",logoH:40},
+    {name:"5argny",kind:"Travel · Egypt",logo:"/brand/5argny.png",logoH:44},
     {name:"Client mark",kind:"Slot available"},
     {name:"Client mark",kind:"Slot available"},
     {name:"Client mark",kind:"Slot available"}
   ],
   ar:[
-    {name:"MiniRue",kind:"تجميل · مصر"},
-    {name:"5argny",kind:"سفر · مصر"},
+    {name:"MiniRue",kind:"تجميل · مصر",logo:"/brand/minirue-ink.png",logoH:40},
+    {name:"5argny",kind:"سفر · مصر",logo:"/brand/5argny.png",logoH:44},
     {name:"شعار عميل",kind:"مكان متاح"},
     {name:"شعار عميل",kind:"مكان متاح"},
     {name:"شعار عميل",kind:"مكان متاح"}

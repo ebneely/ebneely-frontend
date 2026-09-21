@@ -8,12 +8,7 @@ export type NavLink = { href: string; label: string; active?: boolean };
 const NAV =
   "position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:32px;height:56px;max-width:calc(100vw - 28px);padding:6px 18px 6px 6px;border-radius:30px;background:rgba(243,240,233,.5);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);box-shadow:0 0 0 1px rgba(23,20,15,.06);font-size:13px;font-weight:500;color:#17140F";
 const LOGO = "display:flex;align-items:center;gap:10px;flex:none;padding-left:12px";
-const LOGO_STACK = "display:flex;flex-direction:column;gap:2.5px;width:22px";
-const BAR_SHORT = "height:3.5px;background:#17140F;width:60%;margin:0 auto;border-radius:1px";
-const BAR = "height:3.5px;background:#17140F;width:100%;border-radius:1px";
-const WORDMARK =
-  "font-family:Archivo,sans-serif;font-weight:700;font-size:17px;letter-spacing:-.035em";
-const SUP = "font-size:8px;font-weight:500;top:-.8em;position:relative";
+const LOGO_IMG = "display:block;height:22px;width:auto";
 const NAVLINKS =
   "display:none;gap:32px;font-size:13px;font-weight:500;color:rgba(23,20,15,.72)";
 const LINK = "transition:color .4s cubic-bezier(.44,0,.56,1)";
@@ -41,16 +36,9 @@ export function Header({
 
   return (
     <header id="ebn-nav" style={s(NAV)}>
-      <a href={logoHref} id="ebn-logo" style={s(LOGO)}>
-        <span style={s(LOGO_STACK)}>
-          <span style={s(BAR_SHORT)} />
-          <span style={s(BAR)} />
-          <span style={s(BAR)} />
-        </span>
-        <span style={s(WORDMARK)}>
-          bneely
-          <sup style={s(SUP)}>®</sup>
-        </span>
+      <a href={logoHref} id="ebn-logo" aria-label="Ebneely" style={s(LOGO)}>
+        {/* The brand logo, at the footprint of the prototype's drawn mark + wordmark. */}
+        <img src="/brand/ebneely-ink.png" alt="Ebneely" width={90} height={22} style={s(LOGO_IMG)} />
       </a>
 
       <nav id="ebn-navlinks" style={sx(NAVLINKS, { display: wide ? "flex" : "none" })}>

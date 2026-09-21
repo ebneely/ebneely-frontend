@@ -195,13 +195,22 @@ export default function Home() {
                   "background:#F3F0E9;border:1px solid rgba(23,20,15,.12);border-radius:22px;height:82px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0 12px",
                 )}
               >
-                <span
-                  style={s(
-                    "font-family:Archivo,sans-serif;font-weight:600;font-size:15px;letter-spacing:-.02em;color:rgba(23,20,15,.78);text-align:center",
-                  )}
-                >
-                  {c.name}
-                </span>
+                {c.logo ? (
+                  <img
+                    src={c.logo}
+                    alt={c.name}
+                    height={c.logoH}
+                    style={{ ...s("display:block;width:auto"), height: c.logoH }}
+                  />
+                ) : (
+                  <span
+                    style={s(
+                      "font-family:Archivo,sans-serif;font-weight:600;font-size:15px;letter-spacing:-.02em;color:rgba(23,20,15,.78);text-align:center",
+                    )}
+                  >
+                    {c.name}
+                  </span>
+                )}
                 <span
                   style={s(
                     "font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(23,20,15,.66)",
@@ -280,15 +289,12 @@ export default function Home() {
                 "aspect-ratio:4/3;background-image:repeating-linear-gradient(135deg,rgba(23,20,15,.07) 0 1px,transparent 1px 9px);display:flex;align-items:center;justify-content:center",
               )}
             >
-              <span
-                style={s(
-                  "font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(23,20,15,.66);text-align:center;padding:0 18px",
-                )}
-              >
-                MiniRue storefront
-                <br />
-                screenshot
-              </span>
+              <img
+                src="/brand/minirue-ink.png"
+                alt="MiniRue — Cosmetics & Perfumes"
+                height={120}
+                style={s("display:block;height:36%;width:auto")}
+              />
             </div>
             <div style={s("padding:22px 22px 26px")}>
               <div
@@ -341,15 +347,12 @@ export default function Home() {
                 "aspect-ratio:4/3;background-image:repeating-linear-gradient(135deg,rgba(243,240,233,.08) 0 1px,transparent 1px 9px);display:flex;align-items:center;justify-content:center",
               )}
             >
-              <span
-                style={s(
-                  "font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(243,240,233,.58);text-align:center;padding:0 18px",
-                )}
-              >
-                5argny booking flow
-                <br />
-                screenshot
-              </span>
+              <img
+                src="/brand/5argny.png"
+                alt="5argny"
+                height={140}
+                style={s("display:block;height:44%;width:auto")}
+              />
             </div>
             <div style={s("padding:22px 22px 26px")}>
               <div

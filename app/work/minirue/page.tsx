@@ -68,13 +68,12 @@ export default function MiniRueCase() {
             "aspect-ratio:16/9;border-radius:30px;overflow:hidden;background:#EAE6DC;background-image:repeating-linear-gradient(135deg,rgba(23,20,15,.07) 0 1px,transparent 1px 9px);display:flex;align-items:center;justify-content:center",
           )}
         >
-          <span
-            style={s(
-              "font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(23,20,15,.66);text-align:center;padding:0 20px",
-            )}
-          >
-            {t.shotHero}
-          </span>
+          <img
+            src="/brand/minirue-ink.png"
+            alt="MiniRue — Cosmetics & Perfumes"
+            height={240}
+            style={s("display:block;height:34%;width:auto")}
+          />
         </div>
         <div
           data-reveal
